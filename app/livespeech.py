@@ -9,6 +9,7 @@ from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
 
+hi wsup
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
