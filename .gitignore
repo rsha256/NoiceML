@@ -1,3 +1,4 @@
+# python
 venv/
 *.pyc
 __pycache__/
@@ -9,7 +10,14 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+# node
+node_modules/
+
+# Jetbrains
 .idea/
+
+# tmp files
 *.swp
 *~
 ~
@@ -17,3 +25,4 @@ build/
 
 # VS Code
 .vscode/
+

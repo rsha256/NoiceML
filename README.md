@@ -1,13 +1,18 @@
 # HackTCNJ 2019
 
-## Running the Server
-- Run these commands in this order: 
-- `python3 -m venv venv`
-- `source venv/bin/activate`
-- `pip install -r requirements.txt`
-- `npm install`
-- `./run.sh`
-- From now on, just run `./run.sh` and you'll be good
+## Instructions
+Below are the installing and running procedues
+### Installing
+1. Make sure you have all dependecies installed: python3, npm, and pip
+2. Enter in to the directory: *app/templates/static/* and run the command `npm install`. This will download and install all the dependencies listed in *package.json*.
+3. In the static directory, start the npm watcher to build the front end code with the command `npm run watch` (leave this running and open a new terminal window)
+4. Create a python virtualenv(Optional)
+5. Install flask with the command `$ pip install flask`
+6. Install Reactjs with the command `$ npm i react react-dom --save-dev`
+### Running
+1. Go to the root directory and start the server with `python run.py`
+2. If all is working correctly, you will be given an address http://127.0.0.1:5000/ which you can open in your favorite browser and see our application running and displaying “Hello React!”
+
 
 #### Can be implemented in the future to:
 - YouTube
