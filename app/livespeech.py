@@ -1,5 +1,3 @@
-from __future__ import division
-
 import re
 import sys
 
@@ -13,6 +11,8 @@ from six.moves import queue
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
 
+f=open("output.out","w")
+f.close()
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -78,9 +78,8 @@ class MicrophoneStream(object):
 
             yield b''.join(data)
 
-
+f=open("output.out","a+")
 def listen_print_loop(responses):
-    s=""
     """Iterates through server responses and prints them.
 
     The responses passed is a generator that will block until a response
@@ -122,10 +121,10 @@ def listen_print_loop(responses):
             sys.stdout.flush()
 
             num_chars_printed = len(transcript)
+            pass
 
         else:
-            with open("output.out","a+") as w:
-                w.write(transcript + overwrite_chars)
+            f.write("\n"+transcript + overwrite_chars)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
@@ -159,6 +158,7 @@ def main():
 
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
+
 
 if __name__ == '__main__':
     main()
