@@ -9,7 +9,6 @@ from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
 
-hi wsup
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
@@ -81,6 +80,7 @@ class MicrophoneStream(object):
 
 
 def listen_print_loop(responses):
+    s=""
     """Iterates through server responses and prints them.
 
     The responses passed is a generator that will block until a response
@@ -124,7 +124,8 @@ def listen_print_loop(responses):
             num_chars_printed = len(transcript)
 
         else:
-            print(transcript + overwrite_chars)
+            with open("output.out","a+") as w:
+                w.write(transcript + overwrite_chars)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
@@ -158,7 +159,6 @@ def main():
 
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
-
 
 if __name__ == '__main__':
     main()
