@@ -11,7 +11,7 @@ class EchoWebSocket(websocket.WebSocketHandler):
         print("WebSocket closed")
 
 app = web.Application([
-    (r'/ws', EchoWebSocket)
+    (r'/', EchoWebSocket)
 ])
 
 if __name__ == '__main__':
