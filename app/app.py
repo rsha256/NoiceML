@@ -1,16 +1,18 @@
-from tornado import websocket, ioloop
+from tornado import websocket, web, ioloop
 
-class RecieveSocket(websocket.WebSocketHandler):
+class EchoWebSocket(tornado.websocket.WebSocketHandler):
     def open(self):
-        print("ReceiveSocket opened")
+        print("WebSocket opened")
 
-    def on_message(self, message):
-        self.send_message('reeee')
+    def on_message(self, transcription):
+        self.write_message(transcription)
 
     def on_close(self):
-        print("ReceiveSocket closed")
+        print("WebSocket closed")
 
-app = web.Application([(r'/recv', RecieveSocket)])
+app = web.Application([
+    (r'/ws', EchoWebSocket)
+])
 
 if __name__ == '__main__':
     app.listen(8888)
