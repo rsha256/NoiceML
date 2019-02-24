@@ -1,6 +1,6 @@
 from tornado import websocket, web, ioloop
 
-class EchoWebSocket(tornado.websocket.WebSocketHandler):
+class EchoWebSocket(websocket.WebSocketHandler):
     def open(self):
         print("WebSocket opened")
 
