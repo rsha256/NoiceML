@@ -15,7 +15,7 @@
 
 // }
 
-const socket = new WebSocket('ws://localhost:8888');
+const socket = new WebSocket('ws://noiceml.com:8888');
 
 socket.onmessage = function (event) {
     var timestamp = event.data[0];
