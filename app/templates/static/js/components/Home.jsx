@@ -30,22 +30,20 @@ class App extends Component {
     }
     render() {
         return (
-            <div>
                 <Navbar color="invrse" light expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarBrand href="/">Noteify</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
+                                <NavLink href="">New Note</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                                <NavLink href="">Done</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
         );
     }
 }
