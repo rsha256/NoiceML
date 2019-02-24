@@ -15,6 +15,8 @@
 
 // }
 
+$('.dropdown-trigger').dropdown();
+
 const socket = new WebSocket('ws://noiceml.com:8888');
 
 socket.onmessage = function (event) {
@@ -37,4 +39,6 @@ input.addEventListener("keyup", function (event) {
         document.getElementById('notes-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + document.getElementsByClassName('note-text')[0].value + "</p></div></div>"
         document.getElementsByClassName("note-text")[0].value = "";
     }
-});
+}
+);
+

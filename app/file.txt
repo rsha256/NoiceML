@@ -1,0 +1,3 @@
+Hey guys today we are going to be testing NoiceML
+NoiceML is an app aimed at simplifying and enhancing notetaking
+It uses various Google Cloud APIs including Speech-To-Text and translation in order to 

@@ -1,13 +1,11 @@
 import re
 import sys
 
-import asyncio
 from google.cloud import speech
 from google.cloud.speech import enums
 from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
-import websockets
 
 # Audio recording parameters
 RATE = 16000
@@ -95,7 +93,6 @@ def listen_print_loop(responses):
         the next result to overwrite it, until the response is a final one. For the
         final one, print a newline to preserve the finalized transcription.
         """
-
         num_chars_printed = 0
         for response in responses:
             if not response.results:
