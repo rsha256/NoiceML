@@ -1,25 +1,17 @@
-import asyncio
-from flask import Flask, render_template
-import websockets
+from tornado import websocket, ioloop
 
-app = Flask(__name__)
+class RecieveSocket(websocket.WebSocketHandler):
+    def open(self):
+        print("ReceiveSocket opened")
 
-async def recv_transcription(websocket, path):
-    transcription = await websocket.recv()
-    print('Received: ' + transcription)
+    def on_message(self, message):
+        self.send_message('reeee')
 
-    return transcription
+    def on_close(self):
+        print("ReceiveSocket closed")
 
-async def send_transcription(websocket, path):
-    await websocket.send(await recv_transcription())
-    print('Sent.')
+app = web.Application([(r'/recv', RecieveSocket)])
 
-@app.route("/")
-def main():
-    recv_server = websockets.serve(recv_transcription, 'localhost', 6666)
-    send_server = websockets.serve(send_transcription, 'localhost', 8888)
-
-    asyncio.get_event_loop().run_until_complete(send_server)
-    asyncio.get_event_loop().run_forever()
-
-    return render_template('index.html')
+if __name__ == '__main__':
+    app.listen(8888)
+    ioloop.IOLoop.instance().start()
