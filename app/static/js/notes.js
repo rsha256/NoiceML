@@ -14,6 +14,16 @@
 //     console.log("asdfasd")
 
 // }
+
+const socket = new WebSocket('ws://localhost:8888');
+
+socket.onmessage = function (event) {
+    var timestamp = event.data[0];
+    var text = event.data[1];
+
+    document.getElementById('card-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + timestamp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
+};
+
 var input = document.getElementsByClassName("note-text")[0];
 
 // Execute a function when the user releases a key on the keyboard
