@@ -126,9 +126,6 @@ def listen_print_loop(responses):
                 pass
 
             else:
-                async with websockets.connect('ws://localhost:6666') as websocket:
-                    websocket.send(transcript + overwrite_chars)
-                 
                 print(transcript + overwrite_chars)
                 with open("output.txt","a+") as w:
                     w.write("\n"+transcript + overwrite_chars)
