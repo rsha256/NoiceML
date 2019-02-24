@@ -47,6 +47,57 @@
       </div>
     </div>
   </div>
+  <audio id="player" controls></audio>
+
+  <script>
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+navigator.mediaDevices.getUserMedia(
+	{	
+	audio: {
+	mandatory: {
+		googEchoCancellation: 'false',
+		googAutoGainControl: 'false',
+		googNoiseSuppression: 'false',
+		googHighpassFilter: 'false',
+		},
+	},
+}).then(startRecording)
+	.catch( e => {
+   /* If there are some errors with parameter configurations or 
+   user didn’t give you the access to the microphone inside the browser, you end here. */
+	console.log(e);
+	}
+);
+
+function startRecording(stream, callback) {
+    audioContext = audioContext || new AudioContext();
+    if (!audioContext) {
+        return;
+    }
+    myStream = stream;
+
+    // AudioNode used to control the overall gain (or volume) of the audio graph
+    
+    const inputPoint = audioContext.createGain();
+    const microphone = audioContext.createMediaStreamSource(myStream);
+    const analyser = audioContext.createAnalyser();
+    scriptProcessor = inputPoint.context.createScriptProcessor(2048, 2, 2);
+
+    microphone.connect(inputPoint);
+    inputPoint.connect(analyser);
+    inputPoint.connect(scriptProcessor);
+    scriptProcessor.connect(inputPoint.context.destination);
+	// This is for registering to the “data” event of audio stream, without overwriting the default scriptProcessor.onAudioProcess function if there is one.
+	scriptProcessor.addEventListener('audioprocess', streamAudioData);
+}
+const streamAudioData = e => {
+    const floatSamples = e.inputBuffer.getChannelData(0);
+   
+    // HERE GOES THE CODE TO SEND THE CHUNKED DATA FROM STREAM
+};
+
+view raw
+</script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="../static/js/main.js" type="text/javascript"></script>
