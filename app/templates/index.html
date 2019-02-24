@@ -2,33 +2,58 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="../static/js/getUserMedia.js"></script>
-    <script src="../static/js/main.js"></script>
-    <script src="../static/js/onData.js"></script>
-    <script src="../static/js/onMessage.js"></script>
-    <script src="../static/js/socketConnection.js"></script>
-    <script src="../static/js/socketOpen.js"></script>
-    <script src="../static/js/startRecording.js"></script>
-    <script src="../static/js/stopProcessor.js"></script>
-    <script src="../static/js/stopStream.js"></script>
-    <script src="../static/js/streamAudioData.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/main.css">
-    <title>Noteify</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+=
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/main.css">
+  <title>Noteify</title>
 </head>
 
 <body>
-    <header class="z-depth-2">
-        <div class="col s6">
-            <p class="top">Lorem ipsum &mdash; Noteify</p>
+  <nav></nav>
+  <div class="split leftScreen">
+    <div class="centered">
+      <h2 class="white-text">Upload a File below:</h2>
+      <!-- File Upload Code -->
+      <form class="col s12">
+        <div class="row">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Browse</span>
+              <input type="file" />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="mp3" placeholder="Upload file" />
+            </div>
+          </div>
+          <label>Materialize File Input</label>
         </div>
-    </header>
+      </form>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="../static/js/main.js" type="text/javascript"></script>
+      <span class="pulse"></span>
+
+    </div>
+  </div>
+
+  <div class="split rightScreen">
+    <div class="centered row">
+      <div class="col s1"><span class="left">Time:</span><br /><span id="time1"></span></div>
+      <div class="col s5">Notes:<br />
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1"><span id="startTime"></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <audio id="player" controls></audio>
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="../static/js/main.js" type="text/javascript"></script>
 </body>
 
 </html>
