@@ -13,7 +13,10 @@ class EchoWebSocket(websocket.WebSocketHandler):
         self.set_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
     def on_close(self):
         print("WebSocket closed")
-
+    def options(self):
+        self.set_status(204)
+        self.finish()
+        
 app = web.Application([
     (r'/', EchoWebSocket)
 ])
