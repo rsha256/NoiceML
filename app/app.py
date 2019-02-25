@@ -18,7 +18,7 @@ class EchoWebSocket(websocket.WebSocketHandler):
         self.finish()
 
 app = web.Application([
-    (r'', EchoWebSocket)
+    (r'/', EchoWebSocket)
 ])
 
 if __name__ == '__main__':
