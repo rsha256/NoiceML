@@ -17,9 +17,8 @@
 
 // $('.dropdown-trigger').dropdown();
 
-var socket = io.connect('noiceml.com:8888');
+var socket = io.connect('http://noiceml.com:8888');
 socket.on('transcript-update', onmessage);
-io.origins(['noiceml.com:8888']);
 
 function onmessage(data) {
 
