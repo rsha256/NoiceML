@@ -17,21 +17,24 @@
 
 $('.dropdown-trigger').dropdown();
 
-const socket = new WebSocket('ws://noiceml.com:8888');
+var socket = io.connect('http://noiceml.com:8888');
+socket.on('transcript-update', onmessage);
 
-socket.onmessage = function (event) {
-    var timestamp = event.data[0];
-    var text = event.data[1];
+function onmessage(data) {
 
-    document.getElementById('card-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + timestamp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
-};
+    var text = data;
+    console.log(text)
+    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + timestamp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
+
+}
+
 
 var input = document.getElementsByClassName("note-text")[0];
 
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function (event) {
     // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13 && document.getElementsByClassName("note-text")[0].value!="") {
+    if (event.keyCode === 13 && document.getElementsByClassName("note-text")[0].value != "") {
         // Cancel the default action, if needed
         event.preventDefault();
         // Trigger the button element with a click
@@ -39,6 +42,4 @@ input.addEventListener("keyup", function (event) {
         document.getElementById('notes-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + document.getElementsByClassName('note-text')[0].value + "</p></div></div>"
         document.getElementsByClassName("note-text")[0].value = "";
     }
-}
-);
-
+});
