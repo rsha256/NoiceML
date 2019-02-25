@@ -7,7 +7,10 @@ class EchoWebSocket(websocket.WebSocketHandler):
         return True
     def on_message(self, transcription):
         self.write_message(transcription)
-
+    def set_default_headers(self, *args, **kwargs):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
     def on_close(self):
         print("WebSocket closed")
 
