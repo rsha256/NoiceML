@@ -17,10 +17,14 @@ class EchoWebSocket(websocket.WebSocketHandler):
         self.set_status(204)
         self.finish()
 
-app = web.Application([
-    (r'/', EchoWebSocket)
-])
 
-if __name__ == '__main__':
+
+def make_app():
+    return tornado.web.Application([
+        (r"/", EchoWebSocket),
+    ])
+
+if __name__ == "__main__":
+    app = make_app()
     app.listen(8888)
-    ioloop.IOLoop.instance().start()
+    tornado.ioloop.IOLoop.current().start()
