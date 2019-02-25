@@ -19,6 +19,7 @@
 
 var socket = io.connect('noiceml.com:8888');
 socket.on('transcript-update', onmessage);
+io.origins(['noiceml.com:8888']);
 
 function onmessage(data) {
 
