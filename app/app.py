@@ -16,9 +16,9 @@ class EchoWebSocket(websocket.WebSocketHandler):
     def options(self):
         self.set_status(204)
         self.finish()
-        
+
 app = web.Application([
-    (r'/', EchoWebSocket)
+    (r'', EchoWebSocket)
 ])
 
 if __name__ == '__main__':
