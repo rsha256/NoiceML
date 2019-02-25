@@ -3,7 +3,8 @@ from tornado import websocket, web, ioloop
 class EchoWebSocket(websocket.WebSocketHandler):
     def open(self):
         print("WebSocket opened")
-
+    def check_origin(self, origin):
+        return True
     def on_message(self, transcription):
         self.write_message(transcription)
 
