@@ -1,5 +1,5 @@
 
-from tornado import  web, ioloop
+from tornado import web, ioloop
 from sockjs.tornado import SockJSRouter, SockJSConnection
 
 class EchoConnection(SockJSConnection):
