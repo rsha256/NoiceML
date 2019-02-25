@@ -1,6 +1,8 @@
 from tornado import websocket, web, ioloop
+from sockjs.tornado import SockJSRouter, SockJSConnection
 
-class EchoWebSocket(websocket.WebSocketHandler):
+class EchoConnection(SockJSConnection):
+
     def open(self):
         print("WebSocket opened")
     def check_origin(self, origin):
@@ -17,10 +19,9 @@ class EchoWebSocket(websocket.WebSocketHandler):
         self.set_status(204)
         self.finish()
 
-app = web.Application([
-    (r'', EchoWebSocket)
-])
-
 if __name__ == '__main__':
+    EchoRouter = SockJSRouter(EchoConnection, '/')
+
+    app = web.Application(EchoRouter.urls)
     app.listen(8888)
     ioloop.IOLoop.instance().start()
