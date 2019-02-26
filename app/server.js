@@ -16,7 +16,7 @@ io.on('connection', function (socket) {
     socket.on('message', function (data) {
         console.log(data);
         socket.broadcast.emit('transcript-update',data);
-        socket.emit(data)
+        socket.emit('transcript-update',data)
   });
   socket.on('disconnect', function (data) {
     console.log("bye");
