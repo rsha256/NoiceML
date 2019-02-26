@@ -40,6 +40,7 @@ input.addEventListener("keyup", function (event) {
         // Trigger the button element with a click
         var temp = new Date().toLocaleTimeString();
         document.getElementById('notes-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + document.getElementsByClassName('note-text')[0].value + "</p></div></div>"
+        socket.emit(document.getElementsByClassName("note-text")[0].value)
         document.getElementsByClassName("note-text")[0].value = "";
     }
 });
