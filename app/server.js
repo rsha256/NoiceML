@@ -22,7 +22,6 @@ socket.on('connection', function(client){
     });
     
 	client.on('disconnect',function(){
-		clearInterval(interval);
 		console.log('Server has disconnected');
 	});
 
