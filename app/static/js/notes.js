@@ -15,30 +15,46 @@
 
 // }
 
-$('.dropdown-trigger').dropdown();
+// $('.dropdown-trigger').dropdown();
 
-const socket = new WebSocket('ws://noiceml.com:8888');
+var socket = io.connect('http://noiceml.com:8888');
+socket.on('transcript-update', onUpdate);
+socket.on('umm', umm);
 
-socket.onmessage = function (event) {
-    var timestamp = event.data[0];
-    var text = event.data[1];
+socket.on('message', onmessage);
 
-    document.getElementById('card-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + timestamp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
-};
+function umm(data) {
+    var text = data;
+    console.log(text)
+    var temp = new Date().toLocaleTimeString();
+    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge red right-align' data-badge-caption=''> " + temp + "</span><p class='ml-3 left-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
+
+}
+
+function onmessage(data) {
+    console.log(data)
+}
+
+function onUpdate(data) {
+    var text = data;
+    console.log(text)
+    var temp = new Date().toLocaleTimeString();
+    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
+}
+
 
 var input = document.getElementsByClassName("note-text")[0];
 
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function (event) {
     // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13 && document.getElementsByClassName("note-text")[0].value!="") {
+    if (event.keyCode === 13 && document.getElementsByClassName("note-text")[0].value != "") {
         // Cancel the default action, if needed
         event.preventDefault();
         // Trigger the button element with a click
         var temp = new Date().toLocaleTimeString();
         document.getElementById('notes-list').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + document.getElementsByClassName('note-text')[0].value + "</p></div></div>"
+        socket.emit('message', document.getElementsByClassName("note-text")[0].value)
         document.getElementsByClassName("note-text")[0].value = "";
     }
-}
-);
-
+});
