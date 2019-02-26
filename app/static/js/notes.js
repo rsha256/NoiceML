@@ -27,7 +27,7 @@ function umm(data) {
     var text = data;
     console.log(text)
     var temp = new Date().toLocaleTimeString();
-    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge red right-align' data-badge-caption=''> " + temp + "</span><p class='ml-3 left-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p > < /div></div > "
+    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge red right-align' data-badge-caption=''> " + temp + "</span><p class='ml-3 left-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
 
 }
 
