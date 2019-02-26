@@ -6,7 +6,7 @@ server.listen(8888);
 // WARNING: app.listen(80) will NOT work here!
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/templates/ws');
+  res.sendFile(__dirname + '/');
 });
 
 io.on('connection', function (socket) {
