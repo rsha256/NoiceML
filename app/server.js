@@ -16,4 +16,8 @@ io.on('connection', function (socket) {
         socket.broadcast.emit(data);
         socket.emit(data)
   });
+  socket.on('disconnect', function (data) {
+    console.log("bye");
+    
+});
 });
