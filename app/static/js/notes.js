@@ -19,8 +19,16 @@
 
 var socket = io.connect('http://noiceml.com:8888');
 socket.on('transcript-update', onUpdate);
-socket.on('message', onmessage);
+socket.on('umm', onUpdate);
 
+socket.on('message', onmessage);
+function umm(data){
+    var text = data;
+    console.log(text)
+    var temp = new Date().toLocaleTimeString();
+    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge right-align' data-badge-caption=''> you </span><p class='ml-3 left-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
+
+}
 function onmessage(data) {
     console.log(data)
 }
