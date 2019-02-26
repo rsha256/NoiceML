@@ -27,6 +27,5 @@ def make_app():
 if __name__ == "__main__":
     app = make_app()
     app.listen(8888)
-    set_default_headers()
     ioloop.IOLoop.current().start()
 
