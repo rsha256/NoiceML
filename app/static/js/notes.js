@@ -18,16 +18,18 @@
 // $('.dropdown-trigger').dropdown();
 
 var socket = io.connect('http://noiceml.com:8888');
-socket.on('transcript-update', onmessage);
+socket.on('transcript-update', onUpdate);
+socket.on('message', onmessage);
 
 function onmessage(data) {
+    console.log(data)
+}
 
+function onUpdate(data) {
     var text = data;
     console.log(text)
     var temp = new Date().toLocaleTimeString();
-
     document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
-
 }
 
 

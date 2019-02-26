@@ -10,8 +10,8 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    console.log("Good gud...")
-    socket.emit('transcript-update',"hey");
+    console.log("Socket: " + socket.id) 
+    socket.emit('message',"connected");
 
     socket.on('message', function (data) {
         console.log(data);
@@ -20,6 +20,7 @@ io.on('connection', function (socket) {
   });
   socket.on('disconnect', function (data) {
     console.log("bye");
+    socket.emit('message',"disconnected");
     
 });
 });
