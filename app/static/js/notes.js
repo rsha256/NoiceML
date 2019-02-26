@@ -19,7 +19,7 @@
 
 var socket = io.connect('http://noiceml.com:8888');
 socket.on('transcript-update', onUpdate);
-socket.on('umm', onUpdate);
+socket.on('umm', umm);
 
 socket.on('message', onmessage);
 function umm(data){
