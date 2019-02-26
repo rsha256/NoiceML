@@ -1,28 +1,19 @@
-var http = require('http'), io = require('socket.io');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-// Start the server at port 8080
-var server = http.createServer(function(req, res){ 
-
-	// Send HTML headers and message
-	res.writeHead(200,{ 'Content-Type': 'text/html' }); 
-	res.end('<h1>Hello Socket Lover!</h1>');
-});
 server.listen(8888);
+// WARNING: app.listen(80) will NOT work here!
 
-// Create a Socket.IO instance, passing it our server
-var socket = io.listen(server);
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/');
+});
 
-// Add a connect listener
-socket.on('connection', function(client){ 
-	
-	// Success!  Now listen to messages to be received
-	client.on('message',function(event){ 
-        console.log(event)
-		client.emit('transcript-update', event)
-    });
-    
-	client.on('disconnect',function(){
-		console.log('Server has disconnected');
-	});
-
+io.on('connection', function (socket) {
+    console.log("Good gud...")
+    socket.on('message', function (data) {
+        console.log(data);
+        socket.broadcast.emit(data);
+        socket.emit(data)
+  });
 });
