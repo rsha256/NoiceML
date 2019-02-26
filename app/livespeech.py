@@ -15,7 +15,7 @@ f=open("output.txt","w")
 f.close()
 
 class MicrophoneStream(object):
-    """Opens a recording stream as a generator yielding the audio chunks."""
+    # Opens a recording stream as a generator yielding the audio chunks.
     def __init__(self, rate, chunk):
         self._rate = rate
         self._chunk = chunk
@@ -28,7 +28,6 @@ class MicrophoneStream(object):
         self._audio_interface = pyaudio.PyAudio()
         self._audio_stream = self._audio_interface.open(
             format=pyaudio.paInt16,
-            # The API currently only supports 1-channel (mono) audio
             # https://goo.gl/z757pE
             channels=1, rate=self._rate,
             input=True, frames_per_buffer=self._chunk,
@@ -126,8 +125,7 @@ def listen_print_loop(responses):
                 print(transcript + overwrite_chars)
                 with open("output.txt","a+") as w:
                     w.write("\n"+transcript + overwrite_chars)
-                # Exit recognition if any of the transcribed phrases could be
-                # one of our keywords.
+                # Exit recognition script if 'exit' or 'quit' are stated
                 if re.search(r'\b(exit|quit)\b', transcript, re.I):
                     print('Exiting..')
                     break
@@ -137,9 +135,8 @@ def listen_print_loop(responses):
 
 def main():
     try:
-        # See http://g.co/cloud/speech/docs/languages
-        # for a list of supported languages.
-        language_code = 'en-US'  # a BCP-47 language tag
+        # Supports 119 languages
+        language_code = 'en-US'  # a BCP-47 language tag list can be found at: https://cloud.google.com/speech-to-text/docs/languages
 
         client = speech.SpeechClient()
         config = types.RecognitionConfig(
