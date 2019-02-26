@@ -24,7 +24,9 @@ function onmessage(data) {
 
     var text = data;
     console.log(text)
-    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + timestamp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
+    var temp = new Date().toLocaleTimeString();
+
+    document.getElementById('transcript').innerHTML += "   <div class='container-fluid'><div class='row'><span class='new badge left-align' data-badge-caption=''>" + temp + "</span><p class='ml-3 right-align ' style='text-align: justify; word-wrap: break-word'>" + text + "</p></div></div>"
 
 }
 
