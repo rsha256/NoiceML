@@ -21,7 +21,7 @@ class EchoWebSocket(websocket.WebSocketHandler):
 
 def make_app():
     return web.Application([
-        (r"/", EchoWebSocket),
+        (r"/ws", EchoWebSocket),
     ])
 
 if __name__ == "__main__":
