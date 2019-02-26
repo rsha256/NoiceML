@@ -11,6 +11,8 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (socket) {
     console.log("Good gud...")
+    socket.broadcast.emit("hey");
+
     socket.on('message', function (data) {
         console.log(data);
         socket.broadcast.emit(data);
