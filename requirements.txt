@@ -43,7 +43,7 @@ grpc-google-iam-v1==0.11.4
 grpcio==1.12.1
 httplib2==0.19.0
 idna==2.6
-nltk==3.4.5
+nltk==3.6.5
 oauth2client==3.0.0
 oauthlib==2.1.0
 ply==3.8
