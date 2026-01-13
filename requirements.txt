@@ -67,6 +67,6 @@ SpeechRecognition==3.8.1
 textblob==0.15.1
 uritemplate==3.0.0
 urllib3==1.26.5
-virtualenv==16.1.0
+virtualenv==20.36.1
 watson-developer-cloud==2.8.0
 websocket-client==0.48.0
